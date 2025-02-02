@@ -1,30 +1,63 @@
-/* الخطوط */
+/* General Styles */
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #0056b3;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --white-color: #fff;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: left;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-/* التنسيق العام */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
 }
 
-/* شريط التنقل */
+h1, h2, h3 {
+    color: var(--primary-color);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Header Styles */
 header {
-    background-color: #0078d7;
-    color: white;
-    padding: 10px 0;
+    background-color: var(--background-color);
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header .logo img {
-    height: 80px; /* تكبير اللوجو */
+.logo img {
+    height: 50px;
 }
 
 nav ul {
@@ -32,138 +65,294 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
 }
 
 nav ul li {
-    margin-left: 20px;
+    margin-right: 20px;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
     font-weight: bold;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
-/* الصفحة الرئيسية */
-.hero {
-    background: url('images/ai2.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 150px 0;
-    text-align: center;
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+.dropdown {
     position: relative;
 }
 
-.hero::before {
-    content: '';
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--background-color);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    color: var(--text-color);
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-bar {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Hero Section */
+
+.image-background {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* تظليل أسود شفاف */
+    width: 100%;
+    height: 100%;
+    background: url('images/ai2.jpg') no-repeat center center/cover;
+    z-index: -1; /* لإرسال الخلفية إلى الخلف */
 }
 
-.hero .container {
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* تأثير التعتيم */
+}
+
+.hero {
     position: relative;
-    z-index: 1;
+    text-align: center;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: #fff; /* لون النص أبيض */
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 30px;
-    color: #fff; /* لون النص أبيض */
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .cta-button {
-    background-color: #ff6f61;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     padding: 10px 20px;
-    text-decoration: none;
     border-radius: 5px;
-    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-/* أقسام الصفحات */
-.about, .services, .solutions, .blog, .careers, .contact {
-    background-color: white;
-    padding: 50px 0;
+.cta-button.secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+}
+
+.cta-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* About Section */
+.about-section {
+    padding: 60px 0;
     text-align: center;
 }
 
-.about h2, .services h2, .solutions h2, .blog h2, .careers h2, .contact h2 {
-    font-size: 2.5rem;
+.about-section h2 {
     margin-bottom: 20px;
 }
 
-.about p, .services p, .solutions p, .blog p, .careers p, .contact p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+.about-section p {
+    max-width: 800px;
+    margin: 0 auto 30px;
 }
 
-.service-list {
+/* Services Section */
+.services-section {
+    padding: 60px 0;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.services-grid {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
+    margin-top: 40px;
 }
 
 .service-item {
-    background-color: white;
+    background-color: var(--white-color);
     padding: 20px;
-    border-radius: 10px;
-    width: 30%;
-    margin-bottom: 20px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .service-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    margin: 20px 0 10px;
 }
 
-.service-item p {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* اتصل بنا */
-.contact form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.contact form input, .contact form textarea {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.contact form button {
-    background-color: #0078d7;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* التذييل */
-footer {
-    background-color: #333;
-    color: white;
+/* News Section */
+.news-section {
+    padding: 60px 0;
     text-align: center;
-    padding: 20px 0;
+}
+
+.news-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.news-item {
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.news-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.news-item h3 {
+    margin: 20px 0 10px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--text-color);
+    color: var(--white-color);
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.social-links a {
+    color: var(--white-color);
+    margin-right: 10px;
+    font-size: 1.5rem;
 }
 
 footer p {
     margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .services-grid, .news-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-item, .news-item {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar {
+        display: none;
+    }
 }
